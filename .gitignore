@@ -1,0 +1,10 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/BalletLaneApp.Tests/bin/Debug/net10.0
+/BalletLaneApp.Tests/obj
+/.vs
+/ballestlaneapp.client/obj/Debug
+/BallestLaneApp.Server/bin/Debug/net10.0
+/BallestLaneApp.Server/obj
