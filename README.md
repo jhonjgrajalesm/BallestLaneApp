@@ -144,3 +144,22 @@ Demo user:
 Email: demo@ballestlane.com
 Password: Demo123!
 ```
+## Thought Process During the Exercise
+
+The goal of this exercise was not only to build a working CRUD application, but also to demonstrate a clear architectural approach, good separation of concerns, and practical decision-making during development.
+
+I decided to build the solution as a full-stack application using **Angular** for the frontend and **.NET 10** for the backend. The backend was implemented with a clean layered structure, separating domain entities, application services, repositories, infrastructure concerns, API controllers, and persistence logic.
+
+One important architectural decision was to use the **Unit of Work pattern** together with repositories. I chose this approach because it provides a cleaner way to coordinate persistence operations and keeps transaction control in the service layer instead of spreading `SaveChanges()` calls across multiple repositories. This made the application easier to reason about and better aligned with the idea of keeping business use cases centralized.
+
+During implementation, once I started using the application, I noticed that filtering tasks by status would make the user experience much better. Because of that, I added a status filter at the top of the task list. This allows the user to quickly focus on pending, in-progress, completed, or cancelled tasks without needing to scan the full list manually.
+
+I also added an information icon next to each task title. Instead of showing long descriptions directly in the table, the description is displayed as a tooltip-style bubble when the user hovers over the information icon. I chose this because it keeps the task list cleaner and easier to read while still making the full task description available when needed.
+
+The application became useful enough that I would personally use it to manage my own tasks. This was a good sign that the project had moved beyond a basic technical exercise and had become a small but practical productivity tool.
+
+From an architecture perspective, I believe the application is well distributed across layers. The backend separates responsibilities clearly between controllers, services, repositories, unit of work, domain entities, Entity Framework context, and security concerns such as JWT generation.
+
+For the Angular frontend, I did not follow the Angular recommended structure 100% strictly. Instead, I organized the project in a way that felt cleaner and more readable for this specific exercise. The frontend is still separated by features, shared services, models, guards, interceptors, and layout components, but I prioritized clarity and maintainability over following every convention exactly.
+
+Overall, my thought process was to keep the business domain simple, but implement it with professional practices: authentication, task ownership, validation, clean API responses, Angular-friendly error handling, responsive UI, and a maintainable backend architecture.
