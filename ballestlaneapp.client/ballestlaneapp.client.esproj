@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.5277448">
+  <PropertyGroup>
+    <StartupCommand>npm start</StartupCommand>
+    <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
+    <!-- Allows the build (or compile) script located on package.json to run on Build -->
+    <ShouldRunBuildScript>false</ShouldRunBuildScript>
+    <!-- Folder where production build objects will be placed -->
+    <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\ballestlaneapp.client\browser\</BuildOutputFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\features\auth\pages\login\" />
+    <Folder Include="src\app\features\auth\pages\register\" />
+    <Folder Include="src\app\layout\navbar\" />
+    <Folder Include="src\app\layout\shell\" />
+    <Folder Include="src\app\shared\components\" />
+  </ItemGroup>
+</Project>

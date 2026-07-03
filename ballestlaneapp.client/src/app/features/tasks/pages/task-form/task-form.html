@@ -1,0 +1,151 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-10">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <div class="mb-4">
+          <h1 class="h3 mb-1">
+            {{ isEditMode ? 'Edit Task' : 'Create Task' }}
+          </h1>
+
+          <p class="text-muted mb-0">
+            {{ isEditMode ? 'Update the task information.' : 'Add a new task to your list.' }}
+          </p>
+        </div>
+
+        <div *ngIf="isLoading"
+             class="alert alert-info"
+             role="alert">
+          Loading task...
+        </div>
+
+        <div *ngIf="errorMessage"
+             class="alert alert-danger"
+             role="alert">
+          {{ errorMessage }}
+        </div>
+
+        <div *ngIf="successMessage"
+             class="alert alert-success"
+             role="alert">
+          {{ successMessage }}
+        </div>
+
+        <form *ngIf="!isLoading"
+              [formGroup]="taskForm"
+              (ngSubmit)="onSubmit()">
+
+          <div class="row mb-3 align-items-start">
+            <label for="title" class="col-sm-3 col-form-label">
+              Title
+            </label>
+
+            <div class="col-sm-9">
+              <input id="title"
+                     type="text"
+                     class="form-control"
+                     formControlName="title">
+
+              <div *ngIf="hasError('title', 'required')"
+                   class="invalid-feedback d-block">
+                Title is required.
+              </div>
+
+              <div *ngIf="hasError('title', 'maxlength')"
+                   class="invalid-feedback d-block">
+                Title cannot exceed 150 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3 align-items-start">
+            <label for="description" class="col-sm-3 col-form-label">
+              Description
+            </label>
+
+            <div class="col-sm-9">
+              <textarea id="description"
+                        rows="4"
+                        class="form-control"
+                        formControlName="description">
+              </textarea>
+
+              <div *ngIf="hasError('description', 'required')"
+                   class="invalid-feedback d-block">
+                Description is required.
+              </div>
+
+              <div *ngIf="hasError('description', 'maxlength')"
+                   class="invalid-feedback d-block">
+                Description cannot exceed 1000 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3 align-items-start">
+            <label for="dueDate" class="col-sm-3 col-form-label">
+              Due date
+            </label>
+
+            <div class="col-sm-4">
+              <input id="dueDate"
+                     type="date"
+                     class="form-control"
+                     formControlName="dueDate">
+
+              <div *ngIf="hasError('dueDate', 'required')"
+                   class="invalid-feedback d-block">
+                Due date is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3 align-items-start"
+               *ngIf="isEditMode">
+            <label for="status" class="col-sm-3 col-form-label">
+              Status
+            </label>
+
+            <div class="col-sm-4">
+              <select id="status"
+                      class="form-select"
+                      formControlName="status">
+                <option *ngFor="let status of statuses"
+                        [ngValue]="status.value">
+                  {{ status.label }}
+                </option>
+              </select>
+
+              <div *ngIf="hasError('status', 'required')"
+                   class="invalid-feedback d-block">
+                Status is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="offset-sm-3 col-sm-9 d-flex justify-content-end gap-2">
+              <button type="button"
+                      class="btn btn-outline-secondary"
+                      title="Cancel"
+                      aria-label="Cancel"
+                      (click)="cancel()">
+                <i class="bi bi-x-circle me-1"></i>
+                Cancel
+              </button>
+
+              <button type="submit"
+                      class="btn btn-primary"
+                      title="Save task"
+                      aria-label="Save task"
+                      [disabled]="isSubmitting">
+                <i class="bi bi-save me-1"></i>
+                {{ isSubmitting ? 'Saving...' : 'Save Task' }}
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

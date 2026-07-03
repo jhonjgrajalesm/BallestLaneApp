@@ -1,0 +1,109 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h1 class="h3 mb-3 text-center">Register</h1>
+
+        <p class="text-muted text-center mb-4">
+          Create your BallestLaneApp account.
+        </p>
+
+        <div *ngIf="errorMessage"
+             class="alert alert-danger"
+             role="alert">
+          {{ errorMessage }}
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-12 col-md-6 mb-3">
+              <label for="firstName" class="form-label">
+                First name
+              </label>
+
+              <input id="firstName"
+                     type="text"
+                     class="form-control"
+                     formControlName="firstName">
+
+              <div *ngIf="hasError('firstName', 'required')"
+                   class="invalid-feedback d-block">
+                First name is required.
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 mb-3">
+              <label for="lastName" class="form-label">
+                Last name
+              </label>
+
+              <input id="lastName"
+                     type="text"
+                     class="form-control"
+                     formControlName="lastName">
+
+              <div *ngIf="hasError('lastName', 'required')"
+                   class="invalid-feedback d-block">
+                Last name is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">
+              Email
+            </label>
+
+            <input id="email"
+                   type="email"
+                   class="form-control"
+                   formControlName="email">
+
+            <div *ngIf="hasError('email', 'required')"
+                 class="invalid-feedback d-block">
+              Email is required.
+            </div>
+
+            <div *ngIf="hasError('email', 'email')"
+                 class="invalid-feedback d-block">
+              Email format is invalid.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">
+              Password
+            </label>
+
+            <input id="password"
+                   type="password"
+                   class="form-control"
+                   formControlName="password">
+
+            <div *ngIf="hasError('password', 'required')"
+                 class="invalid-feedback d-block">
+              Password is required.
+            </div>
+
+            <div *ngIf="hasError('password', 'minlength')"
+                 class="invalid-feedback d-block">
+              Password must have at least 6 characters.
+            </div>
+          </div>
+
+          <button type="submit"
+                  class="btn btn-primary w-100"
+                  [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Creating account...' : 'Register' }}
+          </button>
+        </form>
+
+        <div class="text-center mt-3">
+          <a routerLink="/auth/login">
+            Already have an account?
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

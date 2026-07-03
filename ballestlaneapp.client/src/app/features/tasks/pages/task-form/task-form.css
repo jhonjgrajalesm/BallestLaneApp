@@ -1,0 +1,30 @@
+.card {
+  border: 0;
+}
+
+.card-body {
+  text-align: left;
+}
+
+form {
+  text-align: left;
+}
+
+label {
+  text-align: left;
+  font-weight: 500;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-control,
+.form-select {
+  text-align: left;
+}
+
+h1,
+p {
+  text-align: left;
+}

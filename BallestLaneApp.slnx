@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ballestlaneapp.client/ballestlaneapp.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="BallestLaneApp.Server/BallestLaneApp.Server.csproj" />
+</Solution>
